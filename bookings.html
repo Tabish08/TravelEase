@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Bookings | TravelEase</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="dashboard">
+        <div class="header">
+            <h1><i class="fas fa-calendar-check"></i> My Bookings</h1>
+            <button class="logout-btn" onclick="logout()">
+                <i class="fas fa-sign-out-alt"></i> Logout
+            </button>
+        </div>
+        
+        <nav class="nav-menu">
+            <a href="dashboard.html">
+                <i class="fas fa-home"></i> Dashboard
+            </a>
+            <a href="packages.html">
+                <i class="fas fa-suitcase"></i> Packages
+            </a>
+            <a href="bookings.html" class="active">
+                <i class="fas fa-calendar-check"></i> My Bookings
+            </a>
+            <a href="#">
+                <i class="fas fa-user"></i> Profile
+            </a>
+        </nav>
+        
+        <div class="bookings-container">
+            <div class="bookings-header">
+                <h2><i class="fas fa-history"></i> Your Travel History</h2>
+                <div class="booking-filter">
+                    <select class="action-btn">
+                        <option>All Bookings</option>
+                        <option>Upcoming</option>
+                        <option>Completed</option>
+                        <option>Cancelled</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="booking-summary">
+                <div class="summary-card">
+                    <i class="fas fa-calendar-alt"></i>
+                    <h3>Total Bookings</h3>
+                    <p>8</p>
+                </div>
+                
+                <div class="summary-card">
+                    <i class="fas fa-plane"></i>
+                    <h3>Upcoming Trips</h3>
+                    <p>3</p>
+                </div>
+                
+                <div class="summary-card">
+                    <i class="fas fa-check-circle"></i>
+                    <h3>Completed</h3>
+                    <p>4</p>
+                </div>
+                
+                <div class="summary-card">
+                    <i class="fas fa-wallet"></i>
+                    <h3>Total Spent</h3>
+                    <p>$9,400</p>
+                </div>
+            </div>
+            
+            <table class="booking-table">
+                <thead>
+                    <tr>
+                        <th>Booking ID</th>
+                        <th>Package</th>
+                        <th>Destination</th>
+                        <th>Date</th>
+                        <th>Price</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="bookingsTable">
+                    <tr>
+                        <td>#TRV-7842</td>
+                        <td>Beach Paradise</td>
+                        <td>Maldives</td>
+                        <td>15 Aug 2023</td>
+                        <td>$1,200</td>
+                        <td><span class="status-badge status-confirmed">Confirmed</span></td>
+                        <td>
+                            <button class="action-btn view-btn">View</button>
+                            <button class="action-btn cancel-btn">Cancel</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>#TRV-5621</td>
+                        <td>Mountain Trek</td>
+                        <td>Swiss Alps</td>
+                        <td>22 Jul 2023</td>
+                        <td>$1,800</td>
+                        <td><span class="status-badge status-completed">Completed</span></td>
+                        <td>
+                            <button class="action-btn view-btn">Details</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>#TRV-8934</td>
+                        <td>City Explorer</td>
+                        <td>Tokyo, Japan</td>
+                        <td>10 Sep 2023</td>
+                        <td>$1,500</td>
+                        <td><span class="status-badge status-pending">Pending</span></td>
+                        <td>
+                            <button class="action-btn view-btn">View</button>
+                            <button class="action-btn cancel-btn">Cancel</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>#TRV-3456</td>
+                        <td>Safari Adventure</td>
+                        <td>Kenya</td>
+                        <td>05 Jun 2023</td>
+                        <td>$2,100</td>
+                        <td><span class="status-badge status-completed">Completed</span></td>
+                        <td>
+                            <button class="action-btn view-btn">Details</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>#TRV-7123</td>
+                        <td>Northern Lights</td>
+                        <td>Iceland</td>
+                        <td>12 Dec 2023</td>
+                        <td>$1,900</td>
+                        <td><span class="status-badge status-confirmed">Confirmed</span></td>
+                        <td>
+                            <button class="action-btn view-btn">View</button>
+                            <button class="action-btn cancel-btn">Cancel</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>#TRV-4890</td>
+                        <td>European Tour</td>
+                        <td>France, Italy, Spain</td>
+                        <td>18 May 2023</td>
+                        <td>$2,800</td>
+                        <td><span class="status-badge status-completed">Completed</span></td>
+                        <td>
+                            <button class="action-btn view-btn">Details</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        // Logout function
+        function logout() {
+            if(confirm('Are you sure you want to logout?')) {
+                // In a real app, this would clear the session
+                alert('You have been logged out successfully!');
+                // Redirect to login page
+                window.location.href = 'index.html';
+            }
+        }
+        
+        // Add interactivity to table rows
+        document.addEventListener('DOMContentLoaded', function() {
+            const tableRows = document.querySelectorAll('.booking-table tbody tr');
+            
+            tableRows.forEach(row => {
+                row.addEventListener('click', function(e) {
+                    if (!e.target.classList.contains('action-btn')) {
+                        this.classList.toggle('expanded');
+                    }
+                });
+            });
+            
+            // Add animation to table rows
+            tableRows.forEach((row, index) => {
+                row.style.opacity = '0';
+                row.style.transform = 'translateY(20px)';
+                
+                setTimeout(() => {
+                    row.style.transition = 'all 0.5s ease';
+                    row.style.opacity = '1';
+                    row.style.transform = 'translateY(0)';
+                }, 200 * index);
+            });
+        });
+    </script>
+</body>
+</html>

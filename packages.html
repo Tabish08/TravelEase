@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Packages | TravelEase</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="dashboard">
+        <div class="header">
+            <h1><i class="fas fa-suitcase"></i> Travel Packages</h1> <button class="logout-btn" onclick="logout()">
+                <i class="fas fa-sign-out-alt"></i> Logout
+            </button>
+        </div>
+        
+        <nav class="nav-menu">
+            <a href="dashboard.html">
+                <i class="fas fa-home"></i> Dashboard
+            </a>
+            <a href="packages.html" class="active">
+                <i class="fas fa-suitcase"></i> Packages
+            </a>
+            <a href="bookings.html">
+                <i class="fas fa-calendar-check"></i> My Bookings
+            </a>
+            <a href="#">
+                <i class="fas fa-user"></i> Profile
+            </a>
+        </nav>
+        
+        <div class="bookings-container"> <div id="packagesContainer" class="packages-grid"></div>
+        </div>
+    </div>
+    <script src="js/script.js"></script>
+</body>
+</html>
